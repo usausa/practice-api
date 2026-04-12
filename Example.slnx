@@ -4,4 +4,18 @@
     <Project Path="src/Example.ServiceDefaults/Example.ServiceDefaults.csproj" />
     <Project Path="src/Example.Web/Example.Web.csproj" />
   </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="AGENTS.md" />
+    <File Path="Analyzers.ruleset" />
+    <File Path="aspire.config.json" />
+    <File Path="CLAUDE.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="Example.sln.DotSettings" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
 </Solution>
