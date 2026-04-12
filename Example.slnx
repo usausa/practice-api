@@ -13,6 +13,7 @@
     <File Path="Analyzers.ruleset" />
     <File Path="aspire.config.json" />
     <File Path="CLAUDE.md" />
+    <File Path="CodeCoverage.runsettings" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Build.targets" />
     <File Path="Example.sln.DotSettings" />
