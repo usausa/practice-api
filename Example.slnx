@@ -2,6 +2,6 @@
   <Folder Name="/src/">
     <Project Path="src/Example.AppHost/Example.AppHost.csproj" />
     <Project Path="src/Example.ServiceDefaults/Example.ServiceDefaults.csproj" />
-    <Project Path="src/Example/Example.csproj" />
+    <Project Path="src/Example.Web/Example.Web.csproj" />
   </Folder>
 </Solution>
