@@ -22,6 +22,7 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Example.IntegrationTests/Example.IntegrationTests.csproj" />
+    <Project Path="tests/Example.Mock/Example.Mock.csproj" />
     <Project Path="tests/Example.UnitTests/Example.UnitTests.csproj" />
   </Folder>
 </Solution>

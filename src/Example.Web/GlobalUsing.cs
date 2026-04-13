@@ -21,6 +21,8 @@ global using System.Text;
 global using System.Threading;
 global using System.Threading.Tasks;
 
+global using BunnyTail.CommonCode;
+
 global using Microsoft.AspNetCore.Authentication;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Components;
@@ -33,11 +35,9 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Options;
 
-global using Microsoft.JSInterop;
-
 global using Smart;
 global using Smart.Collections.Generic;
-global using Smart.ComponentModel;
+global using Smart.Data;
 global using Smart.IO;
 global using Smart.Linq;
 global using Smart.Text;

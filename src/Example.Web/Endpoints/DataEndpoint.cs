@@ -1,4 +1,4 @@
-﻿namespace Example.Web.Endpoints;
+namespace Example.Web.Endpoints;
 
 // ReSharper disable MemberCanBePrivate.Global
 public static class DataEndpoint
@@ -21,8 +21,8 @@ public static class DataEndpoint
     //--------------------------------------------------------------------------------
 
     [ExcludeFromCodeCoverage]
-    //[GenerateToString]
-    public sealed class ListResponseEntry
+    [GenerateToString]
+    public sealed partial class ListResponseEntry
     {
         public int Id { get; set; }
 
@@ -30,11 +30,13 @@ public static class DataEndpoint
     }
 
     [ExcludeFromCodeCoverage]
-    //[GenerateToString]
-    public sealed class ListResponse
+    [GenerateToString]
+#pragma warning disable CA1819
+    public sealed partial class ListResponse
     {
         public ListResponseEntry[] Entries { get; set; } = default!;
     }
+#pragma warning restore CA1819
 
     private static async ValueTask<IResult> HandleList()
     {

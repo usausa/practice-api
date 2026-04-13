@@ -26,7 +26,7 @@ global using Microsoft.Extensions.Logging;
 
 global using Smart;
 global using Smart.Collections.Generic;
-global using Smart.ComponentModel;
+global using Smart.Data;
 global using Smart.IO;
 global using Smart.Linq;
 global using Smart.Text;

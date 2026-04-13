@@ -14,42 +14,19 @@ global using System.IO;
 global using System.Linq;
 global using System.Net;
 global using System.Net.Http;
-global using System.Net.Http.Json;
 global using System.Runtime;
 global using System.Runtime.CompilerServices;
 global using System.Security.Claims;
 global using System.Text;
-global using System.Text.Json;
 global using System.Threading;
 global using System.Threading.Tasks;
 
-global using Example.Tests;
-global using Example.Web.Endpoints;
-
-global using Microsoft.AspNetCore.Authentication;
-global using Microsoft.AspNetCore.Authorization;
-global using Microsoft.AspNetCore.Components;
-global using Microsoft.AspNetCore.Components.Authorization;
-global using Microsoft.AspNetCore.Components.Web;
-global using Microsoft.AspNetCore.Http;
-global using Microsoft.AspNetCore.Mvc;
-global using Microsoft.AspNetCore.Mvc.Testing;
-
-global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
-global using Microsoft.Extensions.Options;
 
 global using Smart;
 global using Smart.Collections.Generic;
 global using Smart.Data;
+global using Smart.Data.Accessor;
 global using Smart.IO;
 global using Smart.Linq;
 global using Smart.Text;
-
-global using Xunit;
-
-// TODO
-// ReSharper disable MissingBlankLines
-//global using Example.Models;
-//global using Example.Services;
-//global using Example.Web.Application;

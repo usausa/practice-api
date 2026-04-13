@@ -1,19 +1,18 @@
 namespace Example.Endpoints;
 
-public class DataEndpointTests : IClassFixture<WebApplicationFactory<Program>>
+public class DataEndpointTests(ApiApplicationFactory factory, ITestOutputHelper outputHelper)
+    : ApiApplicationTest<DataEndpointTests>(factory, outputHelper)
 {
-    private readonly HttpClient client;
-
-    public DataEndpointTests(WebApplicationFactory<Program> factory)
-    {
-        client = factory.CreateClient();
-    }
-
     [Fact]
     public async Task GetList_ReturnsOk()
     {
-        var response = await client.GetAsync("/api/data/");
+        // Arrange
+        using var client = Factory.CreateClient();
 
+        // Act
+        var response = await client.GetAsync("/api/data/", TestContext.Current.CancellationToken);
+
+        // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }
