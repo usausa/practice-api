@@ -12,7 +12,8 @@
         "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
         "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19000",
         "ASPIRE_DASHBOARD_MCP_ENDPOINT_URL": "http://localhost:18000",
-        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20000"
+        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20000",
+        "OTEL_EXPORTER_PROMETHEUS": "true"
       }
     }
   }
