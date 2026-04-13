@@ -60,3 +60,7 @@ if (app.Environment.IsDevelopment())
 app.MapDataEndpoints();
 
 app.Run();
+
+public partial class Program
+{
+}
