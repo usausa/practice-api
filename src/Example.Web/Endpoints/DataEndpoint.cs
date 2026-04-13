@@ -20,6 +20,8 @@ public static class DataEndpoint
     // List
     //--------------------------------------------------------------------------------
 
+    [ExcludeFromCodeCoverage]
+    //[GenerateToString]
     public sealed class ListResponseEntry
     {
         public int Id { get; set; }
@@ -27,6 +29,8 @@ public static class DataEndpoint
         public string Name { get; set; } = default!;
     }
 
+    [ExcludeFromCodeCoverage]
+    //[GenerateToString]
     public sealed class ListResponse
     {
         public ListResponseEntry[] Entries { get; set; } = default!;
