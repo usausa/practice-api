@@ -21,16 +21,29 @@ global using System.Text;
 global using System.Threading;
 global using System.Threading.Tasks;
 
+global using Microsoft.AspNetCore.Authentication;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Components;
+global using Microsoft.AspNetCore.Components.Authorization;
+global using Microsoft.AspNetCore.Components.Web;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Mvc;
+
+global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;
 
 global using Smart;
 global using Smart.Collections.Generic;
-global using Smart.Data;
-//global using Smart.Data.Accessor;
-//global using Smart.Data.Accessor.Attributes;
-//global using Smart.Data.Accessor.Builders;
+global using Smart.ComponentModel;
 global using Smart.IO;
 global using Smart.Linq;
 global using Smart.Text;
 
+global using Xunit;
+
 // TODO
+// ReSharper disable MissingBlankLines
+//global using Example.Models;
+//global using Example.Services;
+//global using Example.Web.Application;
