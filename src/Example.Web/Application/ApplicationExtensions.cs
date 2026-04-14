@@ -463,7 +463,7 @@ public static class ApplicationExtensions
         }
 
         // Endpoints
-        app.MapDefaultEndpoints();
+        //app.MapDefaultEndpoints();
 
         // TODO API
         app.MapDataEndpoints();

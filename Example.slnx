@@ -2,7 +2,6 @@
   <Folder Name="/src/">
     <Project Path="src/Example.AppHost/Example.AppHost.csproj" />
     <Project Path="src/Example.Core/Example.Core.csproj" />
-    <Project Path="src/Example.ServiceDefaults/Example.ServiceDefaults.csproj" />
     <Project Path="src/Example.Web/Example.Web.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
