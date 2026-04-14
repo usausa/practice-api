@@ -1,7 +1,7 @@
 namespace Example.Web.Endpoints;
 
 // ReSharper disable MemberCanBePrivate.Global
-public static class DataEndpoint
+public static partial class DataEndpoint
 {
     //--------------------------------------------------------------------------------
     // Endpoints
