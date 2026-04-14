@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.Text.Unicode;
 
 using Example.Web.Application.Telemetry;
+using Example.Web.Endpoints;
 using Example.Web.Settings;
 
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -73,6 +74,7 @@ public static class ApplicationExtensions
 
     public static IHostApplicationBuilder ConfigureLogging(this IHostApplicationBuilder builder)
     {
+        // TODO check
         var useOtlpExporter = builder.Configuration.IsOtelExporterEnabled();
 
         // Application log
@@ -90,6 +92,9 @@ public static class ApplicationExtensions
     {
         // Add services to the container.
         builder.Services.AddHttpContextAccessor();
+
+        // Html encoder
+        builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));
 
         // Size limit
         builder.Services.Configure<KestrelServerOptions>(static options =>
@@ -126,22 +131,22 @@ public static class ApplicationExtensions
         // TODO Filter
 
         // TODO
-        builder.Services
-            .AddControllers(options =>
-            {
-                options.Conventions.Add(NamingPolicy.PathNaming);
-            })
-            //.ConfigureApiBehaviorOptions(static options =>
-            //{
-            //})
-            .AddJsonOptions(static options =>
-            {
-                options.AllowInputFormatterExceptionMessages = false;
-                options.JsonSerializerOptions.PropertyNamingPolicy = NamingPolicy.JsonPropertyNaming;
-                options.JsonSerializerOptions.DictionaryKeyPolicy = NamingPolicy.JsonDictionaryKeyNaming;
-                options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-                options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
-            });
+        //builder.Services
+        //    .AddControllers(options =>
+        //    {
+        //        options.Conventions.Add(NamingPolicy.PathNaming);
+        //    })
+        //    //.ConfigureApiBehaviorOptions(static options =>
+        //    //{
+        //    //})
+        //    .AddJsonOptions(static options =>
+        //    {
+        //        options.AllowInputFormatterExceptionMessages = false;
+        //        options.JsonSerializerOptions.PropertyNamingPolicy = NamingPolicy.JsonPropertyNaming;
+        //        options.JsonSerializerOptions.DictionaryKeyPolicy = NamingPolicy.JsonDictionaryKeyNaming;
+        //        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        //        options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
+        //    });
 
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
@@ -155,6 +160,11 @@ public static class ApplicationExtensions
 
     public static WebApplication UseErrorHandler(this WebApplication app)
     {
+        if (!app.Environment.IsDevelopment())
+        {
+            // TODO UseExceptionHandler() order ?
+        }
+
         // Exception handler
         app.UseExceptionHandler();
 
@@ -391,9 +401,6 @@ public static class ApplicationExtensions
         // TODO option
         builder.Services.AddDataAccessor();
 
-        // Cache
-        builder.Services.AddMemoryCache();
-
         // Setting
         builder.Services.Configure<ProfilerSetting>(builder.Configuration.GetSection("Profiler"));
         builder.Services.AddSingleton<ProfilerSetting>(static p => p.GetRequiredService<IOptions<ProfilerSetting>>().Value);
@@ -455,10 +462,11 @@ public static class ApplicationExtensions
             });
         }
 
-        // TODO Route
+        // Endpoints
+        app.MapDefaultEndpoints();
 
-        // Controller
-        app.MapControllers();
+        // TODO API
+        app.MapDataEndpoints();
 
         // Health
         app.MapHealthChecks(HealthEndpointPath);
@@ -476,8 +484,9 @@ public static class ApplicationExtensions
 
     public static ValueTask InitializeApplicationAsync(this WebApplication app)
     {
+        // TODO
         // Prepare instrument
-        app.Services.GetRequiredService<ApplicationInstrument>();
+        // app.Services.GetRequiredService<ApplicationInstrument>();
 
         // TODO data initialize
         return ValueTask.CompletedTask;

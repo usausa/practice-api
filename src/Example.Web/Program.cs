@@ -1,8 +1,6 @@
-using Example.Web.Endpoints;
+using Example.Web.Application;
 
 using Microsoft.Extensions.Hosting.WindowsServices;
-
-using Serilog;
 
 // //--------------------------------------------------------------------------------
 // Configure builder
@@ -14,52 +12,73 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
     ContentRootPath = WindowsServiceHelpers.IsWindowsService() ? AppContext.BaseDirectory : default
 });
 
-// Path
-builder.Configuration.SetBasePath(AppContext.BaseDirectory);
+// System
+builder.ConfigureSystem();
 
-// Service
-builder.Host
-    .UseWindowsService()
-    .UseSystemd();
+// Host
+builder.ConfigureHost();
 
 // Logging
-builder.Logging.ClearProviders();
-builder.Services.AddSerilog(options => options.ReadFrom.Configuration(builder.Configuration));
+builder.ConfigureLogging();
 
-// TODO
-builder.AddServiceDefaults();
-
-// TODO
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
+// Http
+builder.ConfigureHttp();
 // API
-builder.Services.AddProblemDetails();
+builder.ConfigureApi();
+// Compress
+//builder.ConfigureCompression();
+// TODO
+//// Swagger
+//builder.ConfigureSwagger();
+
+// Health
+builder.ConfigureHealth();
+// TODO
+// Metrics
+//builder.ConfigureTelemetry();
+
+// TODO
+// Components
+//builder.ConfigureComponents();
 
 //--------------------------------------------------------------------------------
 // Configure request pipeline.
 //--------------------------------------------------------------------------------
 var app = builder.Build();
 
+// Startup information
+app.LogStartupInformation();
+
 // TODO
-app.MapDefaultEndpoints();
+// Logging
+//app.UseLogging();
+//app.UseLoggingContext();
 
-if (!app.Environment.IsDevelopment())
-{
-    // TODO UseExceptionHandler() order ?
-}
+// TODO order
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+// TODO
+//// Forwarded headers
+//app.UseForwardedHeaders();
 
-// TODO API
-app.MapDataEndpoints();
+// TODO
+//// Buffered response
+//app.UseBufferedResponse();
 
-app.Run();
+// Error handler
+app.UseErrorHandler();
+
+// TODO
+// Compression
+//app.UseCompression();
+
+// End point
+app.MapEndpoints();
+
+// Initialize
+await app.InitializeApplicationAsync();
+
+// Run
+await app.RunAsync();
 
 public partial class Program
 {
