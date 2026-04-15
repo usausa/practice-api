@@ -1,5 +1,7 @@
 namespace Example.Web.Endpoints;
 
+using Example.Models;
+
 // ReSharper disable MemberCanBePrivate.Global
 public static partial class DataEndpoint
 {
@@ -22,19 +24,10 @@ public static partial class DataEndpoint
 
     [ExcludeFromCodeCoverage]
     [GenerateToString]
-    public sealed partial class ListResponseEntry
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; } = default!;
-    }
-
-    [ExcludeFromCodeCoverage]
-    [GenerateToString]
 #pragma warning disable CA1819
     public sealed partial class ListResponse
     {
-        public ListResponseEntry[] Entries { get; set; } = default!;
+        public DataEntity[] Entries { get; set; } = default!;
     }
 #pragma warning restore CA1819
 
@@ -44,7 +37,7 @@ public static partial class DataEndpoint
         await Task.Delay(0);
         return Results.Ok(new ListResponse
         {
-            Entries = Enumerable.Range(1, 10).Select(static x => new ListResponseEntry { Id = x, Name = $"Data-{x}" }).ToArray()
+            Entries = Enumerable.Range(1, 10).Select(static x => new DataEntity { Id = x, Name = $"Data-{x}", Flag = x % 2 == 0, DateTime = DateTime.Now }).ToArray()
         });
     }
 }

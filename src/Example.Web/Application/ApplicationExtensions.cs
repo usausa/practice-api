@@ -7,6 +7,7 @@ using System.Text.Unicode;
 
 using Example.Web.Application.Telemetry;
 using Example.Web.Endpoints;
+using Example.Web.Infrastructure.Json;
 using Example.Web.Settings;
 
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -133,20 +134,18 @@ public static class ApplicationExtensions
         // TODO
         //builder.Services
         //    .AddControllers(options =>
-        //    {
         //        options.Conventions.Add(NamingPolicy.PathNaming);
-        //    })
-        //    //.ConfigureApiBehaviorOptions(static options =>
-        //    //{
-        //    //})
-        //    .AddJsonOptions(static options =>
-        //    {
-        //        options.AllowInputFormatterExceptionMessages = false;
-        //        options.JsonSerializerOptions.PropertyNamingPolicy = NamingPolicy.JsonPropertyNaming;
-        //        options.JsonSerializerOptions.DictionaryKeyPolicy = NamingPolicy.JsonDictionaryKeyNaming;
-        //        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-        //        options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
-        //    });
+
+        // Json
+        builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+        {
+            options.SerializerOptions.Converters.Add(new DateTimeConverter());
+
+            options.SerializerOptions.PropertyNamingPolicy = NamingPolicy.JsonPropertyNaming;
+            options.SerializerOptions.DictionaryKeyPolicy = NamingPolicy.JsonDictionaryKeyNaming;
+            options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+            options.SerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
+        });
 
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();

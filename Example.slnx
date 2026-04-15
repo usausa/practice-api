@@ -1,6 +1,6 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/Example.AppHost/Example.AppHost.csproj" />
+    <Project Path="src/Example.AppHost/Example.AppHost.csproj" DefaultStartup="true" />
     <Project Path="src/Example.Core/Example.Core.csproj" />
     <Project Path="src/Example.Web/Example.Web.csproj" />
   </Folder>
