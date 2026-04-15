@@ -469,10 +469,7 @@ public static class ApplicationExtensions
 
         // Health
         app.MapHealthChecks(HealthEndpointPath);
-        app.MapHealthChecks(AlivenessEndpointPath, new HealthCheckOptions
-        {
-            Predicate = r => r.Tags.Contains("live")
-        });
+        app.MapHealthChecks(AlivenessEndpointPath, new HealthCheckOptions { Predicate = r => r.Tags.Contains("live") });
 
         return app;
     }
@@ -481,7 +478,11 @@ public static class ApplicationExtensions
     // Startup
     //--------------------------------------------------------------------------------
 
+    // TODO delete
+    // ReSharper disable once UnusedParameter.Global
+#pragma warning disable IDE0060
     public static ValueTask InitializeApplicationAsync(this WebApplication app)
+#pragma warning restore IDE0060
     {
         // TODO
         // Prepare instrument
