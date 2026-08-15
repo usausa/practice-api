@@ -2,7 +2,7 @@ using Example.Web.Application;
 
 using Microsoft.Extensions.Hosting.WindowsServices;
 
-// //--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 // Configure builder
 //--------------------------------------------------------------------------------
 Directory.SetCurrentDirectory(AppContext.BaseDirectory);
